@@ -4,6 +4,7 @@ import com.johnmsaylor.client.Client;
 import com.johnmsaylor.room.Room;
 
 import java.util.List;
+import java.util.Queue;
 import java.util.Scanner;
 
 public class Console {
@@ -25,6 +26,10 @@ public class Console {
     }
 
     public static void showRooms(List<Room> rooms) {
+        showRooms((Queue<Room>) rooms);
+    }
+
+    public static void showRooms(Queue<Room> rooms) {
         int count = 1;
         for (var room : rooms) {
             System.out.print(count + ") ");
@@ -32,13 +37,19 @@ public class Console {
         }
     }
 
-    public static Room chooseRoom(List<Room> rooms) {
+    public static Room chooseRoom(Queue<Room> rooms) {
         showRooms(rooms);
         System.out.println("Enter room number to select");
         String roomNumberSelected = scanner.next();
-        for (var room : rooms) {
-            if (room.getNumber().equals(roomNumberSelected)) {
-                return room;
+
+        if (Integer.parseInt(roomNumberSelected) < 100) {
+            var temp = (List<Room>) rooms;
+            return temp.get(Integer.parseInt(roomNumberSelected) - 1);
+        } else if (roomNumberSelected.length() > 3) {
+            for (var room : rooms) {
+                if (room.getNumber().equals(roomNumberSelected)) {
+                    return room;
+                }
             }
         }
         System.out.println("Error Finding Room");

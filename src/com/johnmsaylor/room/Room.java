@@ -11,4 +11,5 @@ public interface Room {
     String getNumber();
     String getFloor();
     int getAveragePrice();
+    Client getOccupant();
 }

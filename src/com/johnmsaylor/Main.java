@@ -21,16 +21,12 @@ public class Main {
 	    hotel.addRoom(room);
 	    hotel.addRoom(suite);
 
-	    hotel.showAvailableRooms();
-
-        hotel.reserveRoom(client);
-		client.chargeRoom();
+	    hotel.reserveRoom(client);
 
         hotel.showAvailableRooms();
 
         hotel.checkout(client);
 
         hotel.showAvailableRooms();
-
     }
 }

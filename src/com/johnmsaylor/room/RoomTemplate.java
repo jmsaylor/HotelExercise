@@ -61,4 +61,8 @@ public abstract class RoomTemplate {
     public int getAveragePrice() {
         return averagePrice;
     }
+
+    public Client getOccupant() {
+        return occupant;
+    }
 }
