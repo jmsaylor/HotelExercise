@@ -33,7 +33,7 @@ public class Hotel {
     }
 //    reserveRoom = pull a room from the correct list. if empty print ‘unavailable’ otherwise, run the checkout for the room and move the room from available to reserved. Using the correct collection will make this easier. Add client to clients list
     public void reserveRoom(Client client) {
-
+        clients.add(client);
         String roomType = Console.readType();
         var rooms = roomType.equals("STANDARD") ? availableStandards : availableSuites;
 
@@ -48,6 +48,16 @@ public class Hotel {
         }
     }
 //    checkoutRoom = run the checkout process for a room and move the room from reserved to available.
+    public void checkout() {
+        String clientName = Console.getClientName();
+        for (var client : clients){
+            if (client.getName().equals(clientName)) {
+                checkout(client);
+            }
+        }
+    }
+
+
     public void checkout(Client client) {
         System.out.println("Please pay: " + client.getOutstanding());
         if (Console.readCreditCard()) {
@@ -80,15 +90,7 @@ public class Hotel {
         Console.showRooms((List<Room>) availableSuites);
     }
 
-    public List<Room> getAllAvailableRooms() {
-        // how to join to lists?
-
-//        var temp = new ArrayList<Room>();
-//        temp = Arrays.asList(st)
-        return null;
-    }
-
-    public void moveToAvailable(Room room) {
+    private void moveToAvailable(Room room) {
         switch (room.getType()) {
             case "STANDARD":
                 reservedStandards.remove(room);
@@ -101,7 +103,7 @@ public class Hotel {
         addRoom(room);
     }
 
-    public void moveToReserved(Room room) {
+    private void moveToReserved(Room room) {
         switch (room.getType()) {
             case "STANDARD":
                 availableStandards.remove(room);
@@ -113,5 +115,11 @@ public class Hotel {
                 break;
             default:
         }
+
+
+    }
+
+    public String getName() {
+        return name;
     }
 }

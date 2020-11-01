@@ -39,15 +39,15 @@ public class Console {
 
     public static Room chooseRoom(Queue<Room> rooms) {
         showRooms(rooms);
-        System.out.println("Enter room number to select");
-        String roomNumberSelected = scanner.next();
+        System.out.println("Choose Room");
+        String selection = scanner.next();
 
-        if (Integer.parseInt(roomNumberSelected) < 100) {
+        if (Integer.parseInt(selection) < 100) {
             var temp = (List<Room>) rooms;
-            return temp.get(Integer.parseInt(roomNumberSelected) - 1);
-        } else if (roomNumberSelected.length() > 3) {
+            return temp.get(Integer.parseInt(selection) - 1);
+        } else if (selection.length() > 3) {
             for (var room : rooms) {
-                if (room.getNumber().equals(roomNumberSelected)) {
+                if (room.getNumber().equals(selection)) {
                     return room;
                 }
             }
@@ -62,4 +62,20 @@ public class Console {
         Console.showRoom(room.getType(),room.getNumber(), room.getFloor(), room.getAveragePrice());
         System.out.println("--------------------");
     }
+
+    public static String getClientName(){
+        System.out.print("Enter Client Name: ");
+        return scanner.next().trim();
+    }
+
+    public static int getPartySize(){
+        System.out.print("Party Size: ");
+        return scanner.nextInt();
+    }
+
+    public static String getClientPhone(){
+        System.out.print("Enter Client Phone Number: ");
+        return scanner.next().trim();
+    }
+
 }
